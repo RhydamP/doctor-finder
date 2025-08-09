@@ -13,12 +13,12 @@ export default function Filters({ onApply }: { onApply?: () => void }) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  // initialises from current URL but changes are local until "Apply"
+
   const [gender, setGender] = useState<string>(searchParams.get('gender') ?? '')
   const [location, setLocation] = useState<string>(searchParams.get('location') ?? '')
   const [specialty, setSpecialty] = useState<string>(searchParams.get('specialty') ?? '')
   const [minExp, setMinExp] = useState<string>(searchParams.get('minExp') ?? '')
-  const [keepQuery, setKeepQuery] = useState<boolean>(false) // if you want to preserve `q`
+  const [keepQuery, setKeepQuery] = useState<boolean>(false)
 
   const [locationsList, setLocationsList] = useState<string[]>([])
   const [specialtiesList, setSpecialtiesList] = useState<string[]>([])
@@ -28,7 +28,7 @@ export default function Filters({ onApply }: { onApply?: () => void }) {
     const fetchFilters = async () => {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL 
-        const res = await fetch(`${backendUrl}api/doctors/filters`)
+        const res = await fetch(`${backendUrl}/api/doctors/filters`)
         const data = (await res.json()) as FiltersResponse
         if (!mounted) return
         setLocationsList(data.locations ?? [])

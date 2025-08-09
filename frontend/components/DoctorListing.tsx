@@ -19,7 +19,7 @@ export default function DoctorListing() {
   const fetchDoctors = async () => {
     setLoading(true)
     try {
-      const res = await fetch(`${BACKENDURL}api/doctors?${searchParams.toString()}`)
+      const res = await fetch(`${BACKENDURL}/api/doctors?${searchParams.toString()}`)
       const data = await res.json()
       setDoctors(data)
     } catch (error) {
