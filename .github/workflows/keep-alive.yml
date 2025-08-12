@@ -1,0 +1,13 @@
+name: keep backend alive
+
+on:
+    schedule:
+        - cron: '15 * * * *' # Every hour
+    workflow_dispatch:
+jobs:
+    ping:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Ping backend
+              run: |
+                curl -s https://doctor-finder-qlm3.onrender.com > /dev/null
